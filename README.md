@@ -31,9 +31,3 @@ minikube dashboard --profile cicd1
 curl -k --request POST --url 'https://gitlab.example.com/oauth/token' --header 'content-type: application/json' --data '{"grant_type": "password", "username": "root", "password": "yOkfWeHYVoriqnaUObEeHPEdJCfLSnIudjO9BvsI7z4PiVAPBxMnrOZM0ZvwU0JP"}'
 
 {"access_token":"58553034e2c3492cb78322b753dabbeaa75e61857e918c2d9605c1614964aff0","token_type":"Bearer","expires_in":7200,"refresh_token":"0cce3a277c9fba43d7b92ebf919ce8bb3fb8c7de0f5724db63ff5e1ddeeee304","scope":"api","created_at":1678920373}
-
-
-
-# Ansible
-https://www.perplexity.ai/?s=u&uuid=6688de5c-b15d-4958-8d0a-d6e21025bec8
-https://www.perplexity.ai/?s=u&uuid=d62e5052-5884-48f8-ae0c-1c36277f631c
