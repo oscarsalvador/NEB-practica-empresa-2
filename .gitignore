@@ -1,0 +1,14 @@
+vars.sh
+storage
+
+
+gitlab/configure/projects.json
+gitlab/configure/NEB-practica-empresa-1
+gitlab/ca
+
+#terraform
+**/.terraform/*
+**.out
+**.lock.hcl
+*.tfstate
+*.tfstate.*
