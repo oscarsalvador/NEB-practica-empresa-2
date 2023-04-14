@@ -22,5 +22,3 @@ PERSONAL_ACCESS_TOKEN=$(echo $FULL_PERSONAL_ACCESS_TOKEN | jq '.token')
 
 echo $PERSONAL_ACCESS_TOKEN
 
-git remote add origin http://root:gq0s6hAfQNyuPYO51zHGGZcxj6WtRkyVpsPlAs1raDnFQlwwzyKKFQwIfgVNOhkO@gitlab.gitlab.local/app-repos/frontend-code.git
-git remote add origin https://root:gq0s6hAfQNyuPYO51zHGGZcxj6WtRkyVpsPlAs1raDnFQlwwzyKKFQwIfgVNOhkO@gitlab.gitlab.local/app-repos/backend-code.git

@@ -1,10 +1,11 @@
 vars.sh
 storage
 
-
+gitlab/configure/terraform/variables.tfvars
 gitlab/configure/projects.json
 gitlab/configure/NEB-practica-empresa-1
 gitlab/ca
+gitlab/configure/runner-setup.sh
 
 #terraform
 **/.terraform/*

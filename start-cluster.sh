@@ -24,12 +24,12 @@ echo "
 "
 
 # make sure .,/storage exists, and has 777 permissions
-if ! [ -d "../storage" ]; then
-  mkdir ../storage
+if ! [ -d "./storage" ]; then
+  mkdir ./storage
 fi
 
-if [ "$(stat -c '%a' ../storage)" != "777" ]; then 
-  sudo chmod 777 ../storage
+if [ "$(stat -c '%a' ./storage)" != "777" ]; then 
+  sudo chmod 777 ./storage
 fi
 
 

@@ -42,7 +42,7 @@ function repo_surgeon () {
   echo ${URL_WITH_CREDENTIALS:1:-1}
 
   # exit
-  cp "./pipelines/$1.yml" "./NEB-practica-empresa-1/$2/gitlab-ci.yml"
+  cp "./pipelines/$1.yml" "./NEB-practica-empresa-1/$2/.gitlab-ci.yml"
   cd "./NEB-practica-empresa-1/$2"
 
   # exit 

@@ -21,7 +21,6 @@ resource "gitlab_group" "groups" {
 # }
 
 
-
 # https://registry.terraform.io/providers/gitlabhq/gitlab/latest/docs/resources/project
 resource "gitlab_project" "projects" {
   count = "${length(var.projects)}"
@@ -55,3 +54,45 @@ resource "gitlab_project" "projects" {
   # }
 }
 
+locals {
+  envs = distinct(flatten([
+    for project in var.projects: [
+      for env in project.environments: {
+        project = project.name
+        environment = env
+      }
+    ]
+  ]))
+}
+
+resource "gitlab_project_environment" "environments" {
+  # count = "${length(local.envs)}"
+  for_each = { for i in local.envs: "${i.project}.${i.environment}" => i}
+
+  project = gitlab_project.projects[
+    index(gitlab_project.projects[*].name, each.value.project)
+  ].id
+
+  # name = "${each.value.project}-${each.value.environment}"
+  name = each.value.environment
+}
+# resource "gitlab_project_environment" "environments" {
+#   project = gitlab_project.projects[0].id
+#   name = "pre"
+# }
+
+resource "gitlab_group_variable" "variables" {
+  count = "${length(var.variables)}"
+
+  group = gitlab_group.groups[
+    index(var.groups[*].name, var.variables["${count.index}"].group)
+  ].id
+  key = var.variables["${count.index}"].key
+  value = var.variables["${count.index}"].value
+  protected = var.variables["${count.index}"].protected
+  masked = var.variables["${count.index}"].masked
+  environment_scope = var.variables["${count.index}"].environment_scope
+  # depends_on = [
+  #   gitlab_group.groups
+  # ]
+}

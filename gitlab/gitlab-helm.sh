@@ -1,5 +1,6 @@
 #!/bin/bash
 if [ "$1" == "wipe" ]; then
+  kubectl config set-context cicd --namespace gitlab
   helm uninstall gitlab
   sudo rm -rf ./storage
   kubectl delete namespace gitlab
@@ -59,7 +60,7 @@ echo "
 
 [helm install]>>> Wait until webservice is up 
 "
-url="http://gitlab.gitlab.local/users/sign_in"
+url="https://gitlab.gitlab.local/users/sign_in"
 status=0
 
 while [[ $status -ne 200 && $status -ne 400 ]]; do
@@ -67,4 +68,7 @@ while [[ $status -ne 200 && $status -ne 400 ]]; do
   sleep 10
 done
 
-echo "Server returned status code: $status"
+echo "Server returned status code: $status
+User: root
+Password: $(kubectl get secret gitlab-gitlab-initial-root-password -o jsonpath='{.data.password}' | base64 --decode ; echo)
+"

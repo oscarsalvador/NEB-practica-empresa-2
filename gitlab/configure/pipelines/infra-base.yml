@@ -1,0 +1,41 @@
+stages:
+    - iac_sec
+    - plan
+    - apply
+
+
+checkov_scan:
+    stage: iac_sec
+    environment:
+        name: pre
+    image: bridgecrew/checkov:latest
+    script:
+        - checkov --soft-fail -d .
+
+terraform_plan:
+    stage: plan
+    environment:
+        name: pre
+    tags:
+        - Azure
+        # - Docker
+    script: 
+        - echo $TF_VAR_location
+        - terraform init
+        - terraform plan -out myplan.out
+    artifacts:
+        paths:
+            - .terraform
+            - myplan.out
+
+terraform_apply:
+    stage: apply
+    environment:
+        name: pre
+    tags:
+        - Azure
+        # - Docker
+    script:
+        # - terraform init
+        - terraform apply myplan.out
+    when: manual

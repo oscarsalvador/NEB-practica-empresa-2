@@ -7,6 +7,7 @@ output "groups" {
 #   value = gitlab_topic.topics[*].name
 # }
 
+
 output "projects" {
   value = [for i in gitlab_project.projects : {
     name = i.name
@@ -16,6 +17,10 @@ output "projects" {
   # sensitive = true
 }
 
+
+output "variables" {
+  value = join(",", gitlab_group_variable.variables[*].key)
+}
 # output "test" {
 #   value = distinct(flatten(var.projects[*].topics))
 # }

@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-sonarqube-postgresql
+  namespace: sonarqube
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /storage/pv-sonarqube-postgre
+    type: ''
+  claimRef:
+    name: data-sonar-postgresql-0
+    namespace: sonarqube
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-sonarqube-sonarqube
+  namespace: sonarqube
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /storage/pv-sonarqube-sonarqube
+    type: ''
+  claimRef:
+    name: sonar-sonarqube
+    namespace: sonarqube

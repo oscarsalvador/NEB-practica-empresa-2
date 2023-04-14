@@ -1,0 +1,33 @@
+stages:
+    - analysis
+    - build
+    # - test
+    - deploy
+
+foss-sca-owasp-dependency-check:
+    stage: analysis
+    environment: 
+        name: pre
+    image: owasp/dependency-check:latest
+    script:
+        - ls
+        - dependency-check.sh --project "backend" --scan . # --format HTML --out /tmp
+
+sast-sonarqube:
+    stage: analysis
+    environment:
+        name: pre
+    image: sonarsource/sonar-scanner-cli:latest
+    script:
+        - sonar-scanner
+    allow_failure: true
+
+# los jobs que empiezan con . se saltan
+.docker-build:
+    stage: build
+    environment: pre
+    tags:
+        - Docker
+    script:
+        - docker build -t "fullstackpoc-pre:1.0.0"
+        - docker tag "fullstackpoc-pre:1.0.0" "$TF_VAR"

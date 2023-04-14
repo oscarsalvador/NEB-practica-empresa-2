@@ -9,3 +9,7 @@ variable "groups" {
 variable "projects" {
   description = "Projects to create"
 }
+
+variable "variables" {
+  description = "Group variables for projects to inherit"
+}
