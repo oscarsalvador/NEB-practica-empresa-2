@@ -7,7 +7,7 @@ global:
   #   enabled: false 
   hosts:
     domain: gitlab.local
-    externalIP: 196.168.193.2
+    # externalIP: 196.168.49.2
     https: true
   ingress:
     # enabled: true
@@ -20,10 +20,9 @@ global:
     bootsnap:
       enabled: false
   shell:
-    port: 32022  
+    port: 32022
 
 gitlab-runner:
-  # enabled: false
   runners:
     privileged: true
   certsSecretName: gitlab-gitlab-local-cert
@@ -31,8 +30,6 @@ gitlab-runner:
 gitlab:
   persistence:
     enabled: true
-    # existingClaim: gitlab-pvc
-    # storageClass: sc-gitlab
   # ingress:
   #   enabled: false
   #   annotations:
@@ -41,12 +38,6 @@ gitlab:
   webservice:
     minReplicas: 1
     maxReplicas: 1
-    # webservice:
-    # default:
-    #   # Set the number of restarts before backoff for gitlab-webservice-default
-    #   restart:
-    #     maxAttempts: 40
-
   sidekiq:
     minReplicas: 1
     maxReplicas: 1
@@ -58,6 +49,26 @@ gitlab:
     service:
       type: NodePort
       nodePort: 32022
+  gitaly:
+    persistence:
+      volumeName: repo-data-gitlab-gitaly-0
+
+postgresql:
+  persistence:
+    volumeName: data-gitlab-postgresql-0
+
+minio:
+  persistence:
+    volumeName: gitlab-minio
+
+redis:
+  master:
+    persistence:
+      volumeName: data-gitlab-postgresql-0
+
+prometheus:
+  persistence:
+    volumeName: gitlab-prometheus-server
 
 certmanager:
   install: false
