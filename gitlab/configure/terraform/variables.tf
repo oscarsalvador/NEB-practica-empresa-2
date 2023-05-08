@@ -1,5 +1,13 @@
 variable "token" {
-  description = "Authentication token for the administrator profile"
+  description = "Authentication token for the gitlab administrator profile"
+}
+
+variable "sonar_token" {
+  description = "Authentication token for the sonarqube administrator"
+}
+
+variable "sonar_keystore_pw" {
+  description = "Password for the keystore with the certificate sonar needs for ssl"
 }
 
 variable "groups" {
