@@ -3,17 +3,17 @@ stages:
     - build
     # - test
     - deploy
+    - dast
 
 
 
 
 foss-sca-owasp-dependency-check:
     stage: analysis
-    # environment: 
-    #     name: pre
     image: owasp/dependency-check:latest
     script:
         - ls
+        # - /usr/share/dependency-check/bin/dependency-check.sh --enableExperimental --project "$CI_PROJECT_NAME" --scan . # --format HTML --out /tmp
         - /usr/share/dependency-check/bin/dependency-check.sh --project "$CI_PROJECT_NAME" --scan . # --format HTML --out /tmp
     allow_failure: true
 
@@ -22,16 +22,14 @@ foss-sca-owasp-dependency-check:
 
 sast-sonarqube:
     stage: analysis
-    # environment:
-    #     name: pre
     image: sonarsource/sonar-scanner-cli:latest
     script:
-        - ls /builds/app-repos/backend-code/
+        - ls /builds/app-repos/frontend-code/
         - pwd
         - echo $SONAR_KEYSTORE_PW
         - echo $SONAR_TOKEN
         - ls truststore.jks
-        - export SONAR_SCANNER_OPTS="-Djavax.net.ssl.trustStore="/builds/app-repos/backend-code/truststore.jks" -Djavax.net.ssl.trustStorePassword=$SONAR_KEYSTORE_PW"
+        - export SONAR_SCANNER_OPTS="-Djavax.net.ssl.trustStore="/builds/app-repos/frontend-code/truststore.jks" -Djavax.net.ssl.trustStorePassword=$SONAR_KEYSTORE_PW"
         - sonar-scanner
             -Dsonar.projectKey="$CI_PROJECT_NAME"
             -Dsonar.sources=.
@@ -53,8 +51,8 @@ sast-sonarqube:
         - echo "$TF_VAR_frontend_image"
         - echo $CI_PROJECT_NAME
         - az acr login -n $TF_VAR_acr_name
-        - docker build --build-arg IMAGE_NAME=$TF_VAR_backend_image -t $TF_VAR_backend_image .
-        - docker push $TF_VAR_backend_image
+        - docker build --build-arg IMAGE_NAME=$TF_VAR_frontend_image -t $TF_VAR_frontend_image .
+        - docker push $TF_VAR_frontend_image
 
 docker:pro:
     extends: .docker
@@ -70,7 +68,7 @@ docker:pre:
     only:
         - develop
 
-        
+
 
 
 .deploy-img-in-aci:
@@ -99,3 +97,13 @@ deploy:pre:
 
 
 
+arachni-dast:
+    stage: dast
+    image: arachni/arachni:latest
+    before_script:
+        - export PATH=$PATH:/usr/local/arachni/bin
+    script:
+        - arachni http://preacifesspruebapoc2.westeurope.azurecontainer.io:3000/ #--output-debug-verbosity=3 --report-save-path=report.afr
+    only:
+        - develop
+    when: manual

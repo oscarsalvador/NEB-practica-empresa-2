@@ -9,7 +9,7 @@ stages:
 checkov_scan:
     stage: iac_sec
     environment:
-        name: pro
+        name: pre
     image: bridgecrew/checkov:latest
     script:
         - checkov --soft-fail -d .
@@ -20,7 +20,7 @@ checkov_scan:
 terraform_plan:
     stage: plan
     environment:
-        name: pro
+        name: pre
     tags:
         - Azure
         # - Docker
@@ -43,7 +43,7 @@ terraform_plan:
 terraform_apply:
     stage: apply
     environment:
-        name: pro
+        name: pre
     tags:
         - Azure
         # - Docker
@@ -54,4 +54,3 @@ terraform_apply:
     #needs: 
     #    - terraform_plan
     when: manual
-    
