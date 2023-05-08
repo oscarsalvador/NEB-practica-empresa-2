@@ -1,7 +1,6 @@
 # curl -Lk "https://gitlab.gitlab.local/oauth/token" -d "grant_type=password&username=root&password=temp0ral"
-
 BASE_FQDN=gitlab.local
-PASSWORD=$(kubectl get secret gitlab-gitlab-initial-root-password -o jsonpath='{.data.password}' | base64 --decode ; echo)
+PASSWORD=$(kubectl get secret gitlab-gitlab-initial-root-password -n gitlab -o jsonpath='{.data.password}' | base64 --decode ; echo)
 FULL_OAUTH_TOKEN=$(curl -Lk "https://gitlab.$BASE_FQDN/oauth/token" \
   -d "grant_type=password&username=root&password=$PASSWORD")
 
@@ -20,5 +19,5 @@ FULL_PERSONAL_ACCESS_TOKEN=$(curl -Lk "https://gitlab.$BASE_FQDN/api/v4/users/1/
 
 PERSONAL_ACCESS_TOKEN=$(echo $FULL_PERSONAL_ACCESS_TOKEN | jq '.token')
 
-echo $PERSONAL_ACCESS_TOKEN
+echo "Gitlab PAT: $PERSONAL_ACCESS_TOKEN" | tee /dev/tty >> /tmp/cluster.txt
 
