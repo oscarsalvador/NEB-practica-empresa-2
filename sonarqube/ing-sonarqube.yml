@@ -6,8 +6,13 @@ metadata:
   # annotations:
   #   nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
+  tls:
+    - hosts:
+        - sonar.gitlab.local
+      # secretName: gitlab.gitlab-tls-cert
+      secretName: gitlab-tls-cert
   rules:
-  - host: sonar.local
+  - host: sonar.gitlab.local
     http:
       paths:
       - path: /
@@ -17,13 +22,82 @@ spec:
             name: sonar-sonarqube
             port: 
               number: 80
-  - host: elastic.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: sonar-sonarqube
-            port: 
-              number: 9001
+  # - host: elastic.gitlab.local
+  #   http:
+  #     paths:
+  #     - path: /
+  #       pathType: Prefix
+  #       backend:
+  #         service:
+  #           name: sonar-sonarqube
+  #           port: 
+  #             number: 9001
+
+
+
+
+
+# nd: Ingress
+# apiVersion: networking.k8s.io/v1
+# metadata:
+#   name: ing-sonarqube
+#   namespace: sonarqube
+#   uid: faf3049b-eedc-4b1b-ad08-f16525f808f4
+#   resourceVersion: '29272'
+#   generation: 2
+#   creationTimestamp: '2023-04-16T10:54:26Z'
+#   annotations:
+#     kubectl.kubernetes.io/last-applied-configuration: >
+#       {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{},"name":"ing-sonarqube","namespace":"sonarqube"},"spec":{"rules":[{"host":"sonar.gitlab.local","http":{"paths":[{"backend":{"service":{"name":"sonar-sonarqube","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}],"tls":[{"hosts":["sonar.gitlab.local"],"secretName":"gitlab.gitlab-tls-cert"}]}}
+#   managedFields:
+#     - manager: kubectl-client-side-apply
+#       operation: Update
+#       apiVersion: networking.k8s.io/v1
+#       time: '2023-04-16T10:54:26Z'
+#       fieldsType: FieldsV1
+#       fieldsV1:
+#         f:metadata:
+#           f:annotations:
+#             .: {}
+#             f:kubectl.kubernetes.io/last-applied-configuration: {}
+#         f:spec:
+#           f:rules: {}
+#     - manager: nginx-ingress-controller
+#       operation: Update
+#       apiVersion: networking.k8s.io/v1
+#       time: '2023-04-16T10:54:28Z'
+#       fieldsType: FieldsV1
+#       fieldsV1:
+#         f:status:
+#           f:loadBalancer:
+#             f:ingress: {}
+#       subresource: status
+#     - manager: dashboard
+#       operation: Update
+#       apiVersion: networking.k8s.io/v1
+#       time: '2023-04-16T17:08:17Z'
+#       fieldsType: FieldsV1
+#       fieldsV1:
+#         f:spec:
+#           f:tls: {}
+# spec:
+#   ingressClassName: nginx
+#   tls:
+#     - hosts:
+#         - sonar.gitlab.local
+#       secretName: gitlab-tls-cert
+#   rules:
+#     - host: sonar.gitlab.local
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: sonar-sonarqube
+#                 port:
+#                   number: 80
+# status:
+#   loadBalancer:
+#     ingress:
+#       - ip: 192.168.121.2
