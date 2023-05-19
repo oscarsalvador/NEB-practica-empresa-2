@@ -2,32 +2,37 @@
 ![Helm](https://img.shields.io/badge/Helm-0F1689.svg?style=for-the-badge&logo=Helm&logoColor=white)
 ![Shell Script](https://img.shields.io/badge/shell_script-%23121011.svg?style=for-the-badge&logo=gnu-bash&logoColor=white)
 ![cURL](https://img.shields.io/badge/curl-073551.svg?style=for-the-badge&logo=curl&logoColor=white)
+![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg?style=for-the-badge&logo=terraform&logoColor=white)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![gitlab](https://img.shields.io/badge/GitLab-FC6D26.svg?style=for-the-badge&logo=GitLab&logoColor=white)
+![Azure](https://img.shields.io/badge/azure-%230072C6.svg?style=for-the-badge&logo=microsoftazure&logoColor=white)
 ![sonarqube](https://img.shields.io/badge/SonarQube-4E9BCD.svg?style=for-the-badge&logo=SonarQube&logoColor=white)
+![owasp](https://img.shields.io/badge/OWASP-000000.svg?style=for-the-badge&logo=OWASP&logoColor=white)
 ![LaTeX](https://img.shields.io/badge/latex-%23008080.svg?style=for-the-badge&logo=latex&logoColor=white)
 
+# Introduction
+DevSecOps k8s cluster with GitLab (configured using Terraform) and pipelines for code with SCA (OWASP dependency check), SAST (Sonarqube) and DAST (Arachni), and infrastructure as code with IaC security analysis (Checkov) to deploy to Azure. Production and preproduction environments.
 
-# Cluster stop routine
-1. Stop the dashboard with `kill %1` or ctrl+c in the terminal it's running in
-2. `minikube pause --profile cicd1`
-3. `minikube stop --profile cicd1`
+This repo contains a set of bash scripts to setup a DevSecOps kubernetes cluster in minikube. GitLab and Sonarqube get installed in it, and then GitLab is configured using it's Terraform provider. 
 
-# Cluster creation routine
-```
-mkdir storage
-minikube delete --profile cicd1
-minikube start --profile cicd1 --driver docker --nodes 4 --mount --mount-string "$BASE_PATH:/persistent_volumes"
-kubectl get nodes
-```
+<br>
 
-Dashboard
-```
-minikube addons enable ingress --profile cicd1
-minikube dashboard --profile cicd1
-```
+<p align="center">
+  <img src="./documentation/drawio/cluster2.drawio.png"><br>
+  <em>System overview and pipeline job placement</em>
+</p>
 
+# Pipelines
+Code pipelines
+- Source Code Analysis (SCA) with OWASP dependency check
+- Static Aplication Security Testing (SAST) with Sonarqube
+- Building and pushing of Docker images to Azure Container Registry
+- Manual deployment of the images to Azure Container Instances to production or preproduction depending on the branch
+- Dynamic Aplication Security Testing (DAST) with Arachni
 
-curl -k --request POST --url 'https://gitlab.example.com/oauth/token' --header 'content-type: application/json' --data '{"grant_type": "password", "username": "root", "password": "yOkfWeHYVoriqnaUObEeHPEdJCfLSnIudjO9BvsI7z4PiVAPBxMnrOZM0ZvwU0JP"}'
+<br>
 
-{"access_token":"58553034e2c3492cb78322b753dabbeaa75e61857e918c2d9605c1614964aff0","token_type":"Bearer","expires_in":7200,"refresh_token":"0cce3a277c9fba43d7b92ebf919ce8bb3fb8c7de0f5724db63ff5e1ddeeee304","scope":"api","created_at":1678920373}
+Infrastructure pipelines
+- Infrastructure as Code security analysis with Checkov
+- Automatic planning of the Terraform project
+- Manual deployment of the IaC to production or preproduction depending on the branch

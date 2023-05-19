@@ -1,0 +1,45 @@
+{
+  "mode": "All",
+  "parameters": {
+    "effectOnNonCompliance": {
+      "type": "String",
+      "metadata": {
+        "displayName": "Policy effect",
+        "description": "What to do when the policy is not complied with"
+      }
+    },
+    "listOfValidCompanies": {
+      "type": "Array",
+      "metadata": {
+        "displayName": "Companies",
+        "description": "The list of posible company IDs"
+      }
+    },
+    "listOfValidSites": {
+      "type": "Array",
+      "metadata": {
+        "displayName": "Sites",
+        "description": "The list of posible numeric site IDs"
+      }
+    }
+  },
+  "policyRule": {
+    "if": {
+      "not": {
+        "allOf": [
+          {
+            "value": "[substring(field('name'), 0,2)]",
+            "in": "[parameters('listOfValidCompanies')]"
+          },
+          {
+            "value": "[substring(field('name'), 2,2)]",
+            "in": "[parameters('listOfValidSites')]"
+          }
+        ]
+      }
+    },
+    "then": {
+      "effect": "[parameters('effectOnNonCompliance')]"
+    }
+  }
+}

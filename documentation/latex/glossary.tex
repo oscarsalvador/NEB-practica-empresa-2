@@ -1,0 +1,182 @@
+\newacronym{aws}{AWS}{Amazon Web Services}
+\newacronym{s3}{S3}{Simple Storage Solution}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{url}{URL}{Uniform Resource Locator}
+\newacronym{npm}{NPM}{Node Package Manager}
+\newacronym{rest}{REST}{REpresentational State Transfer}
+\newacronym{saas}{SaaS}{Software as a Service}
+\newacronym{bbdd}{BBDD}{Bases de Datos}
+\newacronym{sspl}{SSPL}{Server-Side Public Licence}
+\newacronym{mpl}{MPL}{Mozilla Public Licence}
+\newacronym{gpl}{GPL}{General Public Licence}
+\newacronym{agpl}{AGPL}{Affero General Public Licence}
+\newacronym{aks}{AKS}{Azure Kubernetes Service}
+\newacronym{aci}{ACI}{Azure Container Instance}
+\newacronym{aca}{ACA}{Azure Container Apps}
+\newacronym{fqdn}{FQDN}{Fully Qualified Domain Name}
+\newacronym{cors}{CORS}{Cross-Origin Resource Sharing}
+\newacronym{cli}{CLI}{Command Line Interface}
+\newacronym{tui}{TUI}{Terminal User Interface}
+\newacronym{iac}{IaC}{Infrastructure as Code}
+\newacronym{crud}{CRUD}{Create, Read, Update, and Destroy}
+\newacronym{tls}{TLS}{Transport Layer Security}
+\newacronym{json}{JSON}{JavaScript Object Notation}
+\newacronym{hcl}{HCL}{Hashicorp Configuration Language}
+\newacronym{ip}{IP}{Internet Protocol}
+\newacronym{cicd}{CI/CD}{Continuous Integration and Continuous Delivery (or Deployment, if completely automated)}
+\newacronym{yaml}{YAML}{YAML Ain't Markup Language}
+\newacronym{pr}{PR}{Pull Request}
+\newacronym{ssh}{SSH}{Secure SHell}
+\newacronym{arm}{ARM}{Azure Resource Manager}
+\newacronym{cdk}{CDK}{Cloud Development Kit}
+\newacronym{https}{HTTPS}{HyperText Transfer Protocol Secure}
+\newacronym{acr}{ACR}{Azure Container Registry}
+\newacronym{hadr}{HA/DR}{High Availability and Disaster Recovery}
+\newacronym{csv}{CSV}{Comma Separated Vector}
+\newacronym{corba}{CORBA}{Common Object Request Broker Arquitecture}
+\newacronym{sdlc}{SDLC}{Software Development Life Cycle}
+\newacronym{pid}{PID}{Process IDentifier}
+\newacronym{ipc}{IPC}{InterProcess Communication}
+\newacronym{vm}{VM}{Virtual Machine}
+\newacronym{lxc}{LXC}{LinuX Containers}
+\newacronym{oci}{OCI}{Open Container Initiative}
+\newacronym{cncf}{CNCF}{Cloud Native Computing Foundation}
+\newacronym{k8s}{K8s}{Kubernetes (K, 8 letters, s)}
+\newacronym{dns}{DNS}{Domain Name Service}
+\newacronym{cri}{CRI}{Kubernetes Container Runtime Interface}
+\newacronym{crio}{CRI-O}{Container Runtime Interface - OpenShift}
+\newacronym{pat}{PAT}{Personal Access Token}
+\newacronym{uat}{UAT}{User Acceptance Testing}
+
+\newglossaryentry{azure}{
+    name={Azure},
+    description={Microsoft's cloud platform}
+}
+\newglossaryentry{frontend}{
+    name={Frontend},
+    description={Server from which the user's browser downloads the files necessary to render the web page}
+}
+\newglossaryentry{client}{
+    name={Client},
+    description={Process that connects to a server, in the case of a web page, the code that runs in the user's browser}
+}
+\newglossaryentry{middleware}{
+    name={Middleware},
+    description={Intermediate server between the frontend and databases. Normally performs the Business Logic}
+}
+\newglossaryentry{backend}{
+    name={Backend},
+    description={Server that is not directly accessible to the user. For the purposes of this report, interchangeable with middleware}
+}
+\newglossaryentry{bucket}{
+    name={Bucket},
+    description={Storage unit in AWS}
+}
+\newglossaryentry{blob}{
+    name={Blob},
+    description={Storage unit in Azure Storage Contairnes}
+}
+\newglossaryentry{http_get}{
+    name={HTTP GET},
+    description={Método de HTTP en el que se pide un recurso}
+}
+\newglossaryentry{http_put}{
+    name={HTTP PUT},
+    description={Método de HTTP en el que se pide crear un recurso. Es idempotente}
+}
+\newglossaryentry{http_post}{
+    name={HTTP POST},
+    description={Método de HTTP en el que se pide subir datos. No es idempotente}
+}
+\newglossaryentry{token}{
+    name={Token},
+    description={También conocido como identificador de sesión, es una cadena de caracteres con la que seguir a un usuario, y darle acceso sin que tenga que enviar su contraseña repetidas veces}
+}
+\newglossaryentry{traefik}{
+    name={Traefik},
+    description={Proxy inverso de última generación, descubre servicios por su cuenta}
+}
+\newglossaryentry{reverse_proxy}{
+    name={Reverse-Proxy},
+    description={Proxy dentro del firewall, en particular usado por recursos dentro de la organización para acceder a otros también dentro. En mi caso, el valor es presentar una única dirección, saltándome el problema de CORS}
+}
+\newglossaryentry{wildcard}{
+    name={Wildcard},
+    description={Valor que representa una equivalencia a cualquier valor}
+}
+\newglossaryentry{infra}{
+    name={Infrastructure},
+    description={Set of hardware and software components that support an application}
+}
+\newglossaryentry{mongodb}{
+    name={MongoDB},
+    description={Non-SQL document database}
+}
+\newglossaryentry{redis}{
+    name={Redis},
+    description={Key-Value database that only stores in memory. Used as a cache, fast but non-persistent, for tokens}
+}
+\newglossaryentry{fullstack}{
+    name={Fullstack},
+    description={The totality of all systems, frontend, backend, and databases}
+}
+\newglossaryentry{docker}{
+    name={Docker},
+    description={Container-based virtualization software}
+}
+\newglossaryentry{graphql}{
+    name={GraphQL},
+    description={Graph Query Language, alternativa a REST, propuesta por Facebook}
+}
+\newglossaryentry{onprem}{
+    name={On-Prem},
+    description={``On-Premises'', Infrastructure on the premises of the company, instead of a third party's}
+}
+\newglossaryentry{wrapper}{
+    name={Wrapper},
+    description={Abstraction layer upon a given tool}
+}
+\newglossaryentry{cloud}{
+    name={Cloud},
+    description={Platform or service purchased as a service, a third party's computer and software that can be run on it}
+}
+\newglossaryentry{pipeline}{
+    name={Pipeline},
+    description={Set of automated processes, normally in a repository or cloud environment, that apply after being triggered by an event, such as a commit to said repo}
+}
+\newglossaryentry{overhead}{
+    name={Overhead},
+    description={Added cost incurred by management or supervisory processes}
+}
+\newglossaryentry{localhost}{
+    name={Localhost},
+    description={El nombre de host estándar para la mísma máquina}
+}
+\newglossaryentry{runtime}{
+    name={Runtime},
+    description={Period in the lifecycle of a program during which it is executed}
+}
+\newglossaryentry{registry}{
+    name={Registry},
+    description={Service to which container images can be uploaded}
+}
+\newglossaryentry{namespace}{
+    name={Namespace},
+    description={Mechanism for the isolation of groups of processes or resources}
+}
+\newglossaryentry{minikube}{
+    name={Minikube},
+    description={Local Kubernetes distribution made for prototyping}
+}
+\newglossaryentry{kubectl}{
+    name={Kubectl},
+    description={CLI to interact with a Kubernetes cluster's control plane through the API}
+}
+\newglossaryentry{helm}{
+    name={Helm},
+    description={Package (chart, configurations) manager for Kubernetes}
+}
+\newglossaryentry{adhoc}{
+    name={Ad-Hoc},
+    description={Specific to and end, without a previous plan or integration into a general solution}
+}

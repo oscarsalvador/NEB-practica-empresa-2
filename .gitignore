@@ -1,11 +1,16 @@
 vars.sh
 storage
+coredns.json
+coredns-fix.json
 
 gitlab/configure/terraform/variables.tfvars
 gitlab/configure/projects.json
 gitlab/configure/NEB-practica-empresa-1
-gitlab/ca
 gitlab/configure/runner-setup.sh
+gitlab/configure/truststore.jks
+gitlab/ca
+gitlab/coredns-fix.json
+gitlab/coredns.json
 
 #terraform
 **/.terraform/*
@@ -13,3 +18,6 @@ gitlab/configure/runner-setup.sh
 **.lock.hcl
 *.tfstate
 *.tfstate.*
+
+documentation/latex/report.tex
+documentation/pics
