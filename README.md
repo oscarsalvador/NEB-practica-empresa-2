@@ -13,7 +13,9 @@
 # Introduction
 DevSecOps k8s cluster with GitLab (configured using Terraform) and pipelines for code with SCA (OWASP dependency check), SAST (Sonarqube) and DAST (Arachni), and infrastructure as code with IaC security analysis (Checkov) to deploy to Azure. Production and preproduction environments.
 
-This repo contains a set of bash scripts to setup a DevSecOps kubernetes cluster in minikube. GitLab and Sonarqube get installed in it, and then GitLab is configured using it's Terraform provider. 
+This repo contains a set of bash scripts to setup a DevSecOps kubernetes cluster in minikube. GitLab and Sonarqube get installed in it, and then GitLab is configured using it's Terraform provider. It requires a host with at least 32 gigabytes of RAM, and eight to twelve cores. The machine needs to have Docker, Helm, Minikube, and Kubectl installed. The three latter can be downloaded and made available to the system with the included `download.sh` script. Another machine is also requried, and it needs to have access to the one in which `launch.sh` is triggered. In my tests I used a VirtualBox virtual machine, but the same host could also be used. This machine needs to have Azure CLI, Docker, and Terraform installed. Additionally, the scripts expect `az-cli` to be already logged into.
+
+Executing `launch.sh` will make changes to the machine's `/etc/hosts`, appending a line with the subdomains that will be used. It will also result in several docker images being downloaded to the local registry.
 
 <br>
 
