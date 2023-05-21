@@ -19,5 +19,4 @@ gitlab/coredns.json
 *.tfstate
 *.tfstate.*
 
-documentation/latex/report.tex
 documentation/pics
